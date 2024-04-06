@@ -1,0 +1,33 @@
+## App Deployment manifest ## 
+## Type : Deployment 
+## Image from registry 
+## name : app1
+## labels :  app = app1 , env = dev
+## Replicas = 3
+## Namespace = default
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  labels:
+    app: app1
+    env: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app1
+      env: dev
+  template:
+    metadata:
+      name: app1-pod
+      labels:
+        app: app1
+        env: dev
+    spec: 
+      containers:
+      - name: app1-container
+        image: zsalieva/python-app:latest 
+        ports:
+        - containerPort: 5000
