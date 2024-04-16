@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: app-daemonset
+  labels: 
+    app: app1
+    env: dev
+    type: daemonset
+spec:
+  selector:
+    matchLabels:
+      app: app1
+      env: dev
+      type: daemonset
+  template:
+    metadata:
+        name: app1-daemon-pod
+        labels: 
+           app: app1
+           env: dev
+           type: daemonset
+    spec: 
+      containers:
+        - name: app1-container
+          image: fluentd:latest    
