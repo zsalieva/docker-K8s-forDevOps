@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"httpd","namespace":"default"},"spec":{"containers":[{"image":"httpd:latest","name":"httpd","ports":[{"containerPort":80}]}]}}
+  creationTimestamp: "2024-04-16T23:25:57Z"
+  name: httpd
+  namespace: default
+  resourceVersion: "15808"
+  uid: cd39ae63-4e7b-484a-8c3d-88816b392bfc
+spec:
+  containers:
+  - image: httpd:latest
+    imagePullPolicy: Always
+    name: httpd
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4t97k
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: k8s-class-jwxwz
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-4t97k
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-16T23:26:03Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-16T23:25:57Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-16T23:26:03Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-16T23:26:03Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-04-16T23:25:57Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://36e7b9f8598f59591e91d6ba152b51c5ba1e333af6403f43c7a5cda07d87a069
+    image: docker.io/library/httpd:latest
+    imageID: docker.io/library/httpd@sha256:73b2e9e2861bcfe682b9a67d83433b6a6b36176459134aa25ec711058075fd47
+    lastState: {}
+    name: httpd
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-04-16T23:26:03Z"
+  hostIP: 10.116.0.2
+  hostIPs:
+  - ip: 10.116.0.2
+  phase: Running
+  podIP: 10.244.0.3
+  podIPs:
+  - ip: 10.244.0.3
+  qosClass: BestEffort
+  startTime: "2024-04-16T23:25:57Z"
