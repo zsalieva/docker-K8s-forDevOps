@@ -1,0 +1,19 @@
+apiVersion : v1 
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    name: myapp
+    env: dev
+spec:
+  volumes:
+   - name: nginx-pv-storage
+     persistentVolumeClaim: 
+       claimName: nginx-pvc
+
+  containers:
+    - name: nginx-1
+      image: nginx:latest
+      volumeMounts:
+        - name : nginx-pv-storage
+          mountPath: /app/data # Application path of data
