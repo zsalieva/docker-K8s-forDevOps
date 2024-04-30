@@ -1,9 +1,9 @@
 apiVersion: v1 
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-pvc
+  name: app1-pvc
   labels: 
-    app: nginx
+    app: app1
     env: dev
 spec:
   storageClassName: manual
@@ -11,4 +11,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 300Mi
+      storage: 1Gi

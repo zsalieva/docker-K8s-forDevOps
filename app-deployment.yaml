@@ -6,27 +6,29 @@
 ## Replicas = 3
 ## Namespace = default
 
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: app1-ns
-  labels:
-    app: app1
-    env: dev
-    type: flask
+#Namespace
+
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: app1-ns
+#   labels:
+#     app: app1
+#     env: dev
+#     type: flask
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: app1-ns
+ # namespace: app1-ns
   name: app1
   labels:
     app: app1
     env: dev
     type: flask
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: app1
@@ -40,6 +42,6 @@ spec:
     spec: 
       containers:
       - name: app1-container
-        image: httpd:latest  #burkanoves/k8s-app:0.3.1   #zsalieva/python-app:latest 
+        image: azaa1/eks-demo-app:0.1.0  #burkanoves/k8s-app:0.3.1   #zsalieva/python-app:latest 
         ports:
         - containerPort: 5000
