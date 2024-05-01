@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-tl
+  name: nginx-tl
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx-tl
+  template:
+    metadata:
+      labels:
+        app: nginx-tl
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+      tolerations:
+      - key: "gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+      nodeSelector:
+        nodenumber: node2
